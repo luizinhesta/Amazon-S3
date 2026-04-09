@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste CEP - AWS</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Teste de CEP</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="cadastro.html">Cadastro</a>
+            <a href="index.html">Login</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="form-group">
+            <label for="cep">Digite um CEP:</label>
+            <input type="text" id="cep" name="cep" placeholder="00000-000" maxlength="9" onkeyup="formatarCEP(this); buscarCEP()" onblur="buscarCEP()">
+        </div>
+
+        <div class="form-group">
+            <label for="logradouro">Logradouro:</label>
+            <input type="text" id="logradouro" readonly>
+        </div>
+
+        <div class="form-group">
+            <label for="bairro">Bairro:</label>
+            <input type="text" id="bairro" readonly>
+        </div>
+
+        <div class="form-group">
+            <label for="cidade">Cidade:</label>
+            <input type="text" id="cidade" readonly>
+        </div>
+
+        <div class="form-group">
+            <label for="estado">Estado:</label>
+            <input type="text" id="estado" readonly>
+        </div>
+
+        <div id="mensagem" class="mensagem"></div>
+
+        <button onclick="testarCEP()">Testar CEP 01001-000</button>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 AWS - Todos os direitos reservados</p>
+    </footer>
+
+    <script src="banco.js"></script>
+    <script>
+// Função para formatar CEP
+function formatarCEP(input) {
+    let value = input.value.replace(/\D/g, '');
+    if (value.length <= 5) {
+        input.value = value;
+    } else {
+        input.value = value.substring(0, 5) + '-' + value.substring(5, 8);
+    }
+}
+
+// Função para buscar CEP automaticamente
+function buscarCEP() {
+    let cep = document.getElementById("cep").value.replace(/\D/g, '');
+    console.log('CEP digitado:', cep);
+
+    if (cep.length === 8) {
+        console.log('Buscando CEP:', cep);
+        banco.buscarCEP(cep)
+            .then(data => {
+                console.log('Dados do CEP recebidos:', data);
+                document.getElementById("logradouro").value = data.logradouro || '';
+                document.getElementById("bairro").value = data.bairro || '';
+                document.getElementById("cidade").value = data.cidade || '';
+                document.getElementById("estado").value = data.estado || '';
+                mostraMensagem('CEP encontrado com sucesso!', 'sucesso');
+            })
+            .catch(error => {
+                console.error("Erro ao buscar CEP:", error);
+                limparEndereco();
+                mostraMensagem('CEP não encontrado: ' + error.message, 'erro');
+            });
+    } else if (cep.length < 8) {
+        limparEndereco();
+    }
+}
+
+// Limpar campos de endereço
+function limparEndereco() {
+    document.getElementById("logradouro").value = '';
+    document.getElementById("bairro").value = '';
+    document.getElementById("cidade").value = '';
+    document.getElementById("estado").value = '';
+}
+
+// Função para mostrar mensagem
+function mostraMensagem(texto, tipo) {
+    const msg = document.getElementById("mensagem");
+    msg.textContent = texto;
+    msg.className = 'mensagem ' + tipo;
+    msg.style.display = 'block';
+}
+
+// Função de teste
+function testarCEP() {
+    document.getElementById("cep").value = "01001000";
+    buscarCEP();
+}
+    </script>
+</body>
+</html>

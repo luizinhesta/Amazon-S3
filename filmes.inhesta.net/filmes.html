@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filmes</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="movie">
+    <header>
+        <div class="header-left">
+            <h1>Filmes</h1>
+        </div>
+        <nav class="main-nav">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="filmes.html" class="nav-link active">Filmes</a>
+            <a href="series.html" class="nav-link">Séries</a>
+        </nav>
+        <div class="login-box">
+            <div id="userStatus" class="user-status" style="display: none;"></div>
+            <form id="formLogin">
+                <input type="text" id="login" name="login" placeholder="Login" required>
+                <input type="password" id="senha" name="senha" placeholder="Senha" required>
+                <button type="submit" class="btn-login">Logar</button>
+            </form>
+            <a href="cadastro.html" class="link-cadastro">Cadastrar</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="filter-section">
+            <div class="filter-row">
+                <div class="filter-group search-group">
+                    <label for="searchInput">Buscar filme:</label>
+                    <div class="search-box">
+                        <input type="text" id="searchInput" placeholder="Digite o nome do filme" />
+                        <button type="button" id="searchButton" class="btn-search">Buscar</button>
+                    </div>
+                </div>
+                <div class="filter-group">
+                    <span>Filtrar por letra:</span>
+                    <div id="alphabetFilter" class="alphabet-filter"></div>
+                </div>
+                <div class="filter-group">
+                    <label for="yearFilter">Filtrar por ano:</label>
+                    <select id="yearFilter">
+                        <option value="">Todos os anos</option>
+                        <option value="2024">2024</option>
+                        <option value="2023">2023</option>
+                        <option value="2022">2022</option>
+                        <option value="2021">2021</option>
+                        <option value="2020">2020</option>
+                    </select>
+                </div>
+            </div>
+        </section>
+
+        <section class="media-section single-column">
+            <div class="media-block">
+                <div class="media-title">Filmes</div>
+                <div class="media-grid" id="collectionGrid"></div>
+            </div>
+        </section>
+
+        <div id="mensagem" class="mensagem"></div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 AWS - Todos os direitos reservados</p>
+    </footer>
+
+    <script src="banco.js"></script>
+    <script src="script-login.js"></script>
+    <script src="script-collection.js"></script>
+</body>
+</html>

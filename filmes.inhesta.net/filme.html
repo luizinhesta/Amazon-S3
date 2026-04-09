@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Filme</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <h1>Detalhes do Filme</h1>
+        </div>
+        <nav class="main-nav">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="filmes.html" class="nav-link">Filmes</a>
+            <a href="series.html" class="nav-link">Séries</a>
+        </nav>
+        <div class="login-box">
+            <div id="userStatus" class="user-status" style="display: none;"></div>
+            <form id="formLogin">
+                <input type="text" id="login" name="login" placeholder="Login" required>
+                <input type="password" id="senha" name="senha" placeholder="Senha" required>
+                <button type="submit" class="btn-login">Logar</button>
+            </form>
+            <a href="cadastro.html" class="link-cadastro">Cadastrar</a>
+        </div>
+    </header>
+
+    <main>
+        <div id="detailContainer"></div>
+        <div id="mensagem" class="mensagem"></div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 AWS - Todos os direitos reservados</p>
+    </footer>
+
+    <script src="banco.js"></script>
+    <script src="script-login.js"></script>
+    <script src="script-filme.js"></script>
+</body>
+</html>

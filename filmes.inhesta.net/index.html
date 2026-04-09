@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filmes e Séries</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <div class="header-left">
+        <h1>Filmes e Séries</h1>
+    </div>
+
+    <nav class="main-nav">
+        <a href="index.html" class="nav-link active">Home</a>
+        <a href="filmes.html" class="nav-link">Filmes</a>
+        <a href="series.html" class="nav-link">Séries</a>
+    </nav>
+
+    <div class="login-box">
+
+        <!-- 🔐 USUÁRIO LOGADO -->
+        <div id="userStatus" class="user-status" style="display: none;">
+            <span id="nomeUsuario"></span>
+
+            <!-- 🔥 CORRIGIDO -->
+            <button id="btnRestrito" class="btn-editar">Área Restrita</button>
+
+            <!-- 🔥 CORRIGIDO -->
+            <button id="btnSair" class="btn-sair">Sair</button>
+        </div>
+
+        <!-- 🔓 LOGIN -->
+        <form id="formLogin">
+            <input type="text" id="login" name="login" placeholder="Login" required>
+            <input type="password" id="senha" name="senha" placeholder="Senha" required>
+            <button type="submit" class="btn-login">Logar</button>
+        </form>
+
+        <a href="cadastro.html" class="link-cadastro">Cadastrar</a>
+
+    </div>
+</header>
+
+
+<main>
+    <section class="filter-section">
+        <div class="filter-row">
+
+            <div class="filter-group search-group">
+                <label for="searchInput">Buscar título:</label>
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Digite o nome do filme ou série" />
+                    <button type="button" id="searchButton" class="btn-search">Buscar</button>
+                </div>
+            </div>
+
+            <div class="filter-group">
+                <span>Filtrar por letra:</span>
+                <div id="alphabetFilter" class="alphabet-filter"></div>
+            </div>
+
+            <div class="filter-group">
+                <label for="yearFilter">Filtrar por ano:</label>
+                <select id="yearFilter">
+                    <option value="">Todos os anos</option>
+                </select>
+            </div>
+
+        </div>
+
+        <div class="filter-note">
+            <p>Escolha por letra ou ano para filtrar lançamentos de filmes e séries.</p>
+        </div>
+    </section>
+
+
+    <section class="media-section">
+        <div class="media-block">
+            <div class="media-title">Filmes</div>
+            <div class="media-grid" id="filmesGrid"></div>
+        </div>
+
+        <div class="media-block">
+            <div class="media-title">Séries</div>
+            <div class="media-grid" id="seriesGrid"></div>
+        </div>
+    </section>
+
+    <div id="mensagem" class="mensagem"></div>
+</main>
+
+
+<footer>
+    <p>&copy; 2024 AWS - Todos os direitos reservados</p>
+</footer>
+
+
+<script src="banco.js"></script>
+<script src="script-login.js"></script>
+<script src="script-index.js"></script>
+
+<!-- 🔥 CONTROLE DE USUÁRIO + ANOS -->
+<script>
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const usuario = banco.getUsuarioLogado();
+
+    const userStatus = document.getElementById("userStatus");
+    const nomeUsuario = document.getElementById("nomeUsuario");
+    const btnSair = document.getElementById("btnSair");
+    const btnRestrito = document.getElementById("btnRestrito");
+    const formLogin = document.getElementById("formLogin");
+
+    if (usuario) {
+        userStatus.style.display = "flex";
+        formLogin.style.display = "none";
+
+        nomeUsuario.textContent = `Olá, ${usuario.nome} ${usuario.sobrenome}`;
+
+        // 🔥 GARANTE QUE NÃO DUPLICA EVENTO
+        btnRestrito.onclick = () => {
+            window.location.href = "acesso.html";
+        };
+
+        btnSair.onclick = () => {
+            banco.logout();
+            location.reload();
+        };
+
+    } else {
+        userStatus.style.display = "none";
+        formLogin.style.display = "flex";
+    }
+
+
+    // ==============================
+    // 📅 ANOS ATÉ 1990
+    // ==============================
+    const select = document.getElementById("yearFilter");
+    const anoAtual = new Date().getFullYear();
+
+    for (let ano = anoAtual; ano >= 1990; ano--) {
+        const option = document.createElement("option");
+        option.value = ano;
+        option.textContent = ano;
+        select.appendChild(option);
+    }
+
+});
+
+</script>
+
+</body>
+</html>

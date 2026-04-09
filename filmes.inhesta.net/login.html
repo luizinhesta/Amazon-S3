@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - AWS</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Login</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="cadastro.html">Cadastrar</a>
+        </nav>
+    </header>
+
+    <main>
+        <div id="loginForm">
+            <form id="formLogin">
+                <div class="form-group">
+                    <label for="login">Login:</label>
+                    <input type="text" id="login" name="login" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="senha">Senha:</label>
+                    <input type="password" id="senha" name="senha" required>
+                </div>
+
+                <button type="submit" class="btn-submit">Logar</button>
+            </form>
+
+            <div id="mensagem" class="mensagem"></div>
+        </div>
+
+        <div id="userActions" style="display: none; margin-top: 2em; text-align: center;">
+            <h3>Bem-vindo!</h3>
+            <p>Você está logado no sistema.</p>
+            <div style="margin: 1em 0;">
+                <a href="editar.html" class="btn-submit" style="display: inline-block; text-decoration: none; margin: 0.5em;">Editar Perfil</a>
+                <a href="acesso.html" class="btn-submit" style="display: inline-block; text-decoration: none; margin: 0.5em; background-color: #28a745;">Área Restrita</a>
+            </div>
+            <button id="btnLogout" class="btn-submit" style="background-color: #dc3545;">Sair</button>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 AWS - Todos os direitos reservados</p>
+    </footer>
+
+    <script src="banco.js"></script>
+    <script src="script-login.js"></script>
+</body>
+</html>

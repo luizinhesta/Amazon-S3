@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acesso Restrito - AWS</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <h1>Área Restrita</h1>
+        </div>
+        <div class="header-center">
+            <a href="index.html" class="link-home">Home</a>
+        </div>
+        <div class="header-right user-info">
+            <div class="user-name" id="usuarioLogado">Olá, Usuário</div>
+            <a href="editar.html" class="btn-editar">Editar</a>
+            <button id="btnSair" class="btn-sair">Sair</button>
+        </div>
+    </header>
+
+    <main>
+        <section class="catalogo-section">
+            <h2>Meu Catálogo</h2>
+            <div class="catalogo-tabs">
+                <button id="tabFilmes" class="tab-button active">Filmes</button>
+                <button id="tabSeries" class="tab-button">Séries</button>
+            </div>
+            <div id="catalogoContainer">
+                <div id="filmesCatalogo" class="catalogo-grid"></div>
+                <div id="seriesCatalogo" class="catalogo-grid" style="display: none;"></div>
+            </div>
+        </section>
+
+        <div id="mensagem" class="mensagem"></div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 AWS - Todos os direitos reservados</p>
+    </footer>
+
+    <script src="banco.js"></script>
+    <script src="script-acesso.js"></script>
+</body>
+</html>
