@@ -1,7 +1,7 @@
 ﻿// ==============================
 // CONFIG API
 // ==============================
-const API_BASE_URL = "https://vg0qeh8oxa.execute-api.us-east-1.amazonaws.com";
+const API_BASE_URL = "ENDEREÇO-API";
 
 function apiUrl(path) {
     return `${API_BASE_URL}/${path}`;
